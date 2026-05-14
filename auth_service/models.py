@@ -3,9 +3,11 @@ from sqlalchemy.sql import func
 from database import Base
 import enum
 
+
 class RoleEnum(str, enum.Enum):
     participant = "participant"
     admin = "admin"
+
 
 class User(Base):
     __tablename__ = "users"

@@ -3,16 +3,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from database import engine, Base
 from routes import router
 
-# Create database tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="IndiQuant Auth Service",
-    description="Authentication service for IndiQuant platform",
-    version="1.0.0"
+    description="Authentication and authorisation service for IndiQuant platform",
+    version="1.0.0",
 )
 
-# CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -21,16 +19,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include routes
 app.include_router(router)
+
 
 @app.get("/")
 def root():
     return {"service": "IndiQuant Auth Service", "status": "running"}
 
+
 @app.get("/health")
 def health():
     return {"status": "healthy"}
+
 
 if __name__ == "__main__":
     import uvicorn
