@@ -10,14 +10,9 @@ class RoleEnum(str, Enum):
 
 
 class UserCreate(BaseModel):
+    """Register ke liye — role field optional hai (backend force karta hai sahi role)."""
     username: str
     email: EmailStr
-    password: str
-    role: RoleEnum = RoleEnum.participant
-
-
-class UserLogin(BaseModel):
-    username: str
     password: str
 
 
